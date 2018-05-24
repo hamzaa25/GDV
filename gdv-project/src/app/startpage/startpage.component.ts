@@ -24,29 +24,110 @@ export class StartpageComponent implements OnInit {
   }
 
   ngOnInit() {
-    const options: Highcharts.Options = {
+    Highcharts.setOptions({
+
+      colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+     
+        return {
+     
+          radialGradient: {
+     
+            cx: 0.5,
+     
+            cy: 0.3,
+     
+            r: 0.7
+     
+          },
+     
+          stops: [
+     
+            [0, color],
+     
+            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+     
+          ]
+     
+        };
+     
+      })
+     
+     });// Build the chart
+     
+     Highcharts.chart('container', {
+     
       chart: {
-        type: 'bar'
+     
+        plotBackgroundColor: null,
+     
+        plotBorderWidth: null,
+     
+        plotShadow: false,
+     
+        type: 'pie'
+     
       },
+     
       title: {
-        text: 'Fruit Consumption'
+     
+        text: 'Browser market shares in January, 2018'
+     
       },
-      xAxis: {
-        categories: ['Apples', 'Bananas', 'Oranges']
+     
+      tooltip: {
+     
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+     
       },
-      yAxis: {
-        title: {
-          text: 'Fruit eaten'
+     
+      plotOptions: {
+     
+        pie: {
+     
+          allowPointSelect: true,
+     
+          cursor: 'pointer',
+     
+          dataLabels: {
+     
+            enabled: true,
+     
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+     
+            style: {
+     
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+     
+            },
+     
+            connectorColor: 'silver'
+     
+          }
+     
         }
+     
       },
+     
       series: [{
-        name: 'Jane',
-        data: [1, 0, 4]
-      }, {
-        name: 'John',
-        data: [5, 7, 3]
+     
+        name: 'Share',
+     
+        data: [
+     
+          { name: 'Davinci', y: 61.41 },
+     
+          { name: 'Gustaff', y: 11.84 },
+     
+          { name: 'Ferdinand', y: 10.85 },
+     
+          { name: 'Okan', y: 4.67 },
+     
+          { name: 'Selim', y: 4.18 },
+     
+          { name: 'Hamza', y: 7.05 }
+     
+        ]
+     
       }]
-    };
-    this.chart = chart(this.chartTarget.nativeElement, options);
-  }
-}
+     
+     })}};
