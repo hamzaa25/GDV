@@ -6,10 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StartpageComponent } from './startpage/startpage.component';
 import { SecondpageComponent } from './secondpage/secondpage.component';
+import { ThirdpageComponent } from './thirdpage/thirdpage.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: StartpageComponent },
   { path: 'second', component: SecondpageComponent },
+  { path: 'third', component: ThirdpageComponent },
   { path: '',
     redirectTo: '',
     pathMatch: 'full'
@@ -20,7 +22,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     StartpageComponent,
-    SecondpageComponent
+    SecondpageComponent,
+    ThirdpageComponent
   ],
   imports: [
     BrowserModule,
