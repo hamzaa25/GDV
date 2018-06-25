@@ -6,12 +6,8 @@ import { Button } from 'protractor';
 import { directiveCreate } from '@angular/core/src/render3/instructions';
 
 var chartTest = null;
-const categoryLinks = {
-  '1950': 'https://www.was-war-wann.de/1900/1950/kunst_der_50er.html',
-  '1955': 'http://www.google.com/search?q=foo+bar',
-  '1960': 'http://www.google.com/serach?q=foobar'
-};
 
+var boolean = true;
 @Component({
   selector: 'app-secondpage',
   templateUrl: './secondpage.component.html',
@@ -24,6 +20,56 @@ constructor (){
 
 }
 
+hideLegend(){
+  boolean = false;
+  this.Materialienn();
+}
+
+showLegend(){
+  boolean = true;
+  this.Materialienn();
+}
+
+closeDiv(){
+    var x1 = document.getElementById("piechart1");
+    var x2 = document.getElementById("piechart2");
+    var x3 = document.getElementById("piechart3");
+    var x4 = document.getElementById("piechart4");
+    var x5 = document.getElementById("piechart5");
+    
+    var x7 = document.getElementById("text");
+    var x8 = document.getElementById("secondChart");
+        x1.style.display = "none";
+        x2.style.display = "none";
+        x3.style.display = "none";
+        x4.style.display = "none";
+        x5.style.display = "none";
+  
+        x7.style.display = "block";
+        x8.style.display = "block"; 
+
+}
+closeWrapperDiv(){
+  var x6 = document.getElementById("secondChart");
+  var x7 = document.getElementById("text");
+    x6.style.display = "none";
+    x7.style.display = "none";
+
+    var x1 = document.getElementById("piechart1");
+    var x2 = document.getElementById("piechart2");
+    var x3 = document.getElementById("piechart3");
+    var x4 = document.getElementById("piechart4");
+    var x5 = document.getElementById("piechart5");
+  
+        x1.style.display = "inline-block";
+        x2.style.display = "inline-block";
+        x3.style.display = "inline-block";
+        x4.style.display = "inline-block";
+        x5.style.display = "inline-block";
+
+ 
+
+}
 
 Materialienn () {
  chartTest = Highcharts.chart('Materialien', {
@@ -47,10 +93,6 @@ Materialienn () {
    title: {
      text: 'Benutzte Materialien und Werkzeuge im Verlauf der Jahre'
    },
-   subtitle: {
-     text: document.ontouchstart === undefined ?
-       'Markieren Sie den Zeitraum, den Sie detailierter betrachten wollen'  : '..'
-   },
    xAxis: {
      type: 'datetime',
      dateTimeLabelFormats: { // don't display the dummy year
@@ -58,11 +100,7 @@ Materialienn () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+
        useHTML: true
      }
    },
@@ -301,7 +339,7 @@ Materialienn () {
      }, {
        name: 'Filztift',
        legendIndex:23,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1949, 1, 1), 5],
          [Date.UTC(1958, 1, 1), 1],
@@ -334,7 +372,7 @@ Materialienn () {
      {
        name: 'Gelatinendruck',
        legendIndex:24,
-       visible:true,
+       visible:boolean,
        data: [
          //    [Date.UTC(1927, 1, 1), 3],
          [Date.UTC(1968, 1, 1), 1],
@@ -352,7 +390,7 @@ Materialienn () {
      }, {
        name: 'Graphite',
        legendIndex:11,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1858, 1, 1), 1],
          [Date.UTC(1875, 1, 1), 2],
@@ -447,6 +485,7 @@ Materialienn () {
 
        ]
      }, {
+       visible:boolean,
        name: 'Holz',
        legendIndex:5,
        color:'brown',
@@ -604,7 +643,7 @@ Materialienn () {
      }, {
        name: 'Kugelschreiber',
        legendIndex:12,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1921, 1, 1), 21],
          [Date.UTC(1926, 1, 1), 1],
@@ -680,7 +719,7 @@ Materialienn () {
      {
        name: 'Öl',
        legendIndex:8,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1871, 1, 1), 3],
          [Date.UTC(1872, 1, 1), 10],
@@ -815,8 +854,9 @@ Materialienn () {
        ]
      },
      {
+       visible:boolean,
        name: 'Papier',
-       color:'yellow',
+       color:'purple',
        legendIndex:1,
        data: [
          [Date.UTC(1818, 1, 1), 6],
@@ -998,7 +1038,7 @@ Materialienn () {
      },
      {
        name: 'Pastel',
-       visible:true,
+       visible:boolean,
        legendIndex:13,
        data: [
          [Date.UTC(1875, 1, 1), 1],
@@ -1107,7 +1147,7 @@ Materialienn () {
      {
        name: 'Stahl',
        legendIndex:10,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1821, 1, 1), 1],
          [Date.UTC(1827, 1, 1), 1],
@@ -1220,6 +1260,7 @@ Materialienn () {
        ]
      },
      {
+       visible:boolean,
        name: 'Stift',
        color:'violet',
        legendIndex:3,
@@ -1361,7 +1402,7 @@ Materialienn () {
      {
        name: 'Tinte',
        legendIndex:4,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1840, 1, 1), 1],
          [Date.UTC(1866, 1, 1), 1],
@@ -1496,7 +1537,7 @@ Materialienn () {
      },
      {
        name: 'Visitenkarte',
-       visible:true,
+       visible:boolean,
        legendIndex:16,
        data: [
          [Date.UTC(1954, 1, 1), 61],
@@ -1533,7 +1574,7 @@ Materialienn () {
      },
      {
        name: 'Wasserfarben',
-       visible:true,
+       visible:boolean,
        legendIndex:7,
        data: [
          [Date.UTC(1844, 1, 1), 1],
@@ -1673,7 +1714,7 @@ Materialienn () {
      {
        name: 'Abs',
        legendIndex:18,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1927, 1, 1), 1],
          [Date.UTC(1936, 1, 1), 1],
@@ -1735,7 +1776,7 @@ Materialienn () {
      {
        name: 'Acryl',
        legendIndex:14,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1880, 1, 1), 1],
          [Date.UTC(1898, 1, 1), 1],
@@ -1818,7 +1859,7 @@ Materialienn () {
      {
        name: 'Airbush',
        legendIndex:21,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1920, 1, 1), 1],
          [Date.UTC(1922, 1, 1), 2],
@@ -1857,6 +1898,7 @@ Materialienn () {
      },
 
      {
+       visible:boolean,
        name: 'Aquatint',
        color:'orange',
        legendIndex:2,
@@ -2003,7 +2045,7 @@ Materialienn () {
      {
        name: 'Bronze',
        legendIndex:15,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1878, 1, 1), 14],
          [Date.UTC(1886, 1, 1), 1],
@@ -2107,7 +2149,7 @@ Materialienn () {
      {
        name: 'Carbon',
        legendIndex:17,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1834, 1, 1), 10],
          [Date.UTC(1836, 1, 1), 1],
@@ -2189,7 +2231,7 @@ Materialienn () {
      {
        name: 'Glas',
        legendIndex:9,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1830, 1, 1), 1],
          [Date.UTC(1836, 1, 1), 1],
@@ -2351,7 +2393,7 @@ Materialienn () {
      {
        name: 'Mylar',
        legendIndex:19,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1945, 1, 1), 1],
          [Date.UTC(1952, 1, 1), 6],
@@ -2384,6 +2426,7 @@ Materialienn () {
        ]
      },
      {
+       visible:boolean,
        name: 'Photomontage',
        color:'lightblue',
        legendIndex:20,
@@ -2418,7 +2461,7 @@ Materialienn () {
      {
        name: 'Polyester',
        legendIndex:18,
-       visible:true,
+       visible:boolean,
        data: [
          [Date.UTC(1935, 1, 1), 1],
          [Date.UTC(1940, 1, 1), 1],
@@ -2466,6 +2509,7 @@ Materialienn () {
        ]
      },
      {
+       visible:boolean,
        name: 'Video',
        color: 'darkgreen',
        legendIndex:6,
@@ -2852,11 +2896,7 @@ magischerRealismuss () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+   
        useHTML: true
      }
    },
@@ -3022,7 +3062,7 @@ magischerRealismuss () {
      },
      {
        name: 'Papier',
-       color:'yellow',
+       color:'purple',
        data: [
         
          [Date.UTC(1918, 1, 1), 47],
@@ -3390,11 +3430,7 @@ AbstrakterExpressionismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+
        useHTML: true
      }
    },
@@ -3569,7 +3605,7 @@ AbstrakterExpressionismus () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1950, 1, 1), 71],
@@ -3993,11 +4029,7 @@ Dadaismuss () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+    
        useHTML: true
      }
    },
@@ -4117,7 +4149,7 @@ Dadaismuss () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1916, 1, 1), 725],
@@ -4385,11 +4417,7 @@ Dadaismuss () {
         year: '%Y'
       },
       labels: {
-        formatter: function () {
-          const date = Highcharts.dateFormat('%Y', this.value);
-          // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-          return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-        },
+      
         useHTML: true
       }
     },
@@ -4555,7 +4583,7 @@ Dadaismuss () {
       },
       {
         name: 'Papier',
-        color:'yellow',
+        color:'purple',
         data: [
     
           [Date.UTC(1870, 1, 1), 12],
@@ -4891,11 +4919,7 @@ Dadaismuss () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+     
        useHTML: true
      }
    },
@@ -5059,7 +5083,7 @@ Dadaismuss () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1958, 1, 1), 90],
@@ -5440,15 +5464,6 @@ Dadaismuss () {
       dabei politisch motiviert war, weshalb gesellschaftliche Verhältnisse sowie deren Widersprüche und Konflikte
       häufig Themen realistischer Bilder sind. Zum anderen kann der allgemeinen Wortbedeutung folgend als
       „realistisch“ bezeichnet werden, was dem dargestellten Gegenstand, Thema oder der Idee äußerst nahekommt.
-      Es kann dem Schein nach für wahr gehalten werden. „Realistische“ Tendenzen können demnach schon in
-      früheren Kunstwerken beobachtet werden. So wurde z. B. Albrecht Dürers Aquarell Junger Feldhase (1502) in
-      seiner Darstellung als so „wahrscheinlich“, so lebensecht empfunden, dass man ihn für real und lebendig halten
-      konnte. Dieses Beispiel soll verdeutlichen, dass eine lebensgetreue Darstellung kein Garant für ein realistisches
-      Bild im Sinne der kunsthistorischen Definition ist. Hinzu kommt, dass in jeder künstlerischen Form des
-      Ausdrucks Bezug auf die Realität genommen wird. Diese Bezugnahme geschieht unterschiedlich und grenzt so
-      u. a. die einzelnen Strömungen des Realismus wie Neuer Realismus, Phantastischer Realismus oder
-      Fotorealismus voneinander ab. Allein die Darstellung der Realität, so wie der Künstler sie sieht bzw. zeigen will,
-      ist demnach nicht maßgebend, um Kunst dem „Realismus“ zuzuordnen.
     `
    Highcharts.chart('secondChart', {
    /* colors: ['#2ed89c', '#05386d', '#8bbc21', '#910000', '#84d5e8',
@@ -5481,11 +5496,7 @@ Dadaismuss () {
         year: '%Y'
       },
       labels: {
-        formatter: function () {
-          const date = Highcharts.dateFormat('%Y', this.value);
-          // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-          return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-        },
+      
         useHTML: true
       }
     },
@@ -5636,7 +5647,7 @@ Dadaismuss () {
       },
       {
         name: 'Papier',
-        color:'yellow',
+        color:'purple',
         data: [
           
           [Date.UTC(1850, 1, 1), 11],
@@ -5932,11 +5943,7 @@ Dadaismuss () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+       
        useHTML: true
      }
    },
@@ -6100,7 +6107,7 @@ Dadaismuss () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1958, 1, 1), 90],
@@ -6504,11 +6511,7 @@ Bauhaus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+     
        useHTML: true
      }
    },
@@ -6605,7 +6608,6 @@ Bauhaus () {
       visible:true,
       data: [
         [Date.UTC(1921, 1, 1), 21],
-        [Date.UTC(1926, 1, 1), 1],
         
 
       ]
@@ -6626,7 +6628,7 @@ Bauhaus () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1920, 1, 1), 52],
@@ -6885,11 +6887,7 @@ NeoExpressionismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+       
        useHTML: true
      }
    },
@@ -7176,7 +7174,7 @@ NeoExpressionismus () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1978, 1, 1), 150],
@@ -7943,11 +7941,7 @@ NeoExpressionismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+      
        useHTML: true
      }
    },
@@ -8112,7 +8106,7 @@ NeoExpressionismus () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1905, 1, 1), 39],
@@ -8491,11 +8485,7 @@ NeoExpressionismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+      
        useHTML: true
      }
    },
@@ -8658,7 +8648,7 @@ NeoExpressionismus () {
       },
       {
         name: 'Papier',
-        color:'yellow',
+        color:'purple',
         data: [
           
           [Date.UTC(1895, 1, 1), 8],
@@ -9043,11 +9033,7 @@ NeoExpressionismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+    
        useHTML: true
      }
    },
@@ -9168,7 +9154,7 @@ NeoExpressionismus () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1907, 1, 1), 332],
@@ -9441,11 +9427,7 @@ Futurismus () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+       
        useHTML: true
      }
    },
@@ -9477,464 +9459,356 @@ Futurismus () {
      shared: true
    },
      
-    series: [
-      {
-        name: 'Druck',
-        color:'blue',
-        legendIndex:1,
-        visible:true,
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 98],
-          [Date.UTC(1896, 1, 1), 40],
-          [Date.UTC(1897, 1, 1), 26],
-          [Date.UTC(1898, 1, 1), 138],
-          [Date.UTC(1899, 1, 1), 75],
-          [Date.UTC(1900, 1, 1), 267],
-          [Date.UTC(1901, 1, 1), 48],
-          [Date.UTC(1902, 1, 1), 178],
-          [Date.UTC(1903, 1, 1), 153],
-          [Date.UTC(1904, 1, 1), 483],
-          [Date.UTC(1905, 1, 1), 221],
-          [Date.UTC(1906, 1, 1), 213],
-          [Date.UTC(1907, 1, 1), 763],
-          [Date.UTC(1908, 1, 1), 191],
-          [Date.UTC(1909, 1, 1), 123],
-          [Date.UTC(1910, 1, 1), 137],
-          [Date.UTC(1911, 1, 1), 474],
-          [Date.UTC(1912, 1, 1), 95],
-          [Date.UTC(1913, 1, 1), 228],
-          [Date.UTC(1914, 1, 1), 689],
-          [Date.UTC(1915, 1, 1), 422],
-          
+   series: [
+    {
+      name: 'Druck',
+      color:'blue',
+      legendIndex:1,
+      visible:true,
+      data: [
+        
+        [Date.UTC(1909, 1, 1), 123],
+        [Date.UTC(1910, 1, 1), 137],
+        [Date.UTC(1911, 1, 1), 474],
+        [Date.UTC(1912, 1, 1), 95],
+        [Date.UTC(1913, 1, 1), 228],
+        [Date.UTC(1914, 1, 1), 689],
+        [Date.UTC(1915, 1, 1), 422],
+        [Date.UTC(1916, 1, 1), 453],
+        [Date.UTC(1917, 1, 1), 421],
+        [Date.UTC(1918, 1, 1), 352],
+        
 
-        ]
-      }, {
-        name: 'Filztift',
+      ]
+    }, {
+      name: 'Filztift',
+      color:'black',
+      visible:false,
+      data: [
         
-        visible:false,
-        data: [
-          
 
-        ]
-      },
-      {
-        name: 'Gelatinendruck',
+      ]
+    },
+    {
+      name: 'Gelatinendruck',
+      color:'black',
+      legendIndex:26,
+      visible:false,
+      data: [
         
-        legendIndex:26,
-        visible:false,
-        data: [
-          //    [Date.UTC(1927, 1, 1), 3],
-          
 
-        ]
-      }, {
-        name: 'Graphite',
+      ]
+    }, {
+      name: 'Graphite',
+      color:'black',
+      visible:false,
+      data: [
         
-        visible:true,
-        data: [
-          [Date.UTC(1901, 1, 1), 1],
-          [Date.UTC(1902, 1, 1), 3],
-          [Date.UTC(1907, 1, 1), 1],
-          [Date.UTC(1911, 1, 1), 1],
-          [Date.UTC(1912, 1, 1), 19],
-          [Date.UTC(1913, 1, 1), 14],
-          [Date.UTC(1915, 1, 1), 2],
-          
-        ]
-      }, {
-        name: 'Holz',
-        color:'brown',
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 50],
-          [Date.UTC(1896, 1, 1), 2],
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1898, 1, 1), 15],
-          [Date.UTC(1900, 1, 1), 4],
-          [Date.UTC(1902, 1, 1), 44],
-          [Date.UTC(1903, 1, 1), 18],
-          [Date.UTC(1904, 1, 1), 347],
-          [Date.UTC(1905, 1, 1), 121],
-          [Date.UTC(1906, 1, 1), 28],
-          [Date.UTC(1907, 1, 1), 174],
-          [Date.UTC(1908, 1, 1), 13],
-          [Date.UTC(1909, 1, 1), 167],
-          [Date.UTC(1910, 1, 1), 19],
-          [Date.UTC(1911, 1, 1), 35],
-          [Date.UTC(1912, 1, 1), 10],
-          [Date.UTC(1913, 1, 1), 127],
-          [Date.UTC(1914, 1, 1), 307],
-          [Date.UTC(1915, 1, 1), 58],
-          
-        ]
-      }, {
-        name: 'Kugelschreiber',
+        [Date.UTC(1911, 1, 1), 1],
+        [Date.UTC(1912, 1, 1), 19],
+        [Date.UTC(1913, 1, 1), 14],
+        [Date.UTC(1915, 1, 1), 2],
+        [Date.UTC(1916, 1, 1), 3],
+        [Date.UTC(1918, 1, 1), 1],
         
-        visible:false,
-        data: [
-          
 
-        ]
-      },
-      {
-        name: 'Öl',
+      ]
+    }, {
+      name: 'Holz',
+      color:'brown',
+      data: [
         
-        visible:true,
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 3],
-          [Date.UTC(1897, 1, 1), 7],
-          [Date.UTC(1898, 1, 1), 5],
-          [Date.UTC(1899, 1, 1), 10],
-          [Date.UTC(1900, 1, 1), 4],
-          [Date.UTC(1901, 1, 1), 3],
-          [Date.UTC(1902, 1, 1), 15],
-          [Date.UTC(1903, 1, 1), 2],
-          [Date.UTC(1904, 1, 1), 8],
-          [Date.UTC(1905, 1, 1), 12],
-          [Date.UTC(1906, 1, 1), 25],
-          [Date.UTC(1907, 1, 1), 32],
-          [Date.UTC(1908, 1, 1), 17],
-          [Date.UTC(1909, 1, 1), 36],
-          [Date.UTC(1910, 1, 1), 7],
-          [Date.UTC(1911, 1, 1), 43],
-          [Date.UTC(1912, 1, 1), 5],
-          [Date.UTC(1913, 1, 1), 13],
-          [Date.UTC(1914, 1, 1), 14],
-          [Date.UTC(1915, 1, 1), 15],
-          
-        ]
-      },
-      {
-        name: 'Papier',
-        color:'yellow',
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 8],
-          [Date.UTC(1896, 1, 1), 1],
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1898, 1, 1), 4],
-          [Date.UTC(1899, 1, 1), 24],
-          [Date.UTC(1900, 1, 1), 34],
-          [Date.UTC(1901, 1, 1), 7],
-          [Date.UTC(1902, 1, 1), 63],
-          [Date.UTC(1903, 1, 1), 54],
-          [Date.UTC(1904, 1, 1), 22],
-          [Date.UTC(1905, 1, 1), 39],
-          [Date.UTC(1906, 1, 1), 28],
-          [Date.UTC(1907, 1, 1), 332],
-          [Date.UTC(1908, 1, 1), 36],
-          [Date.UTC(1909, 1, 1), 102],
-          [Date.UTC(1910, 1, 1), 23],
-          [Date.UTC(1911, 1, 1), 125],
-          [Date.UTC(1912, 1, 1), 45],
-          [Date.UTC(1913, 1, 1), 512],
-          [Date.UTC(1914, 1, 1), 82],
-          [Date.UTC(1915, 1, 1), 32],
-          
+        [Date.UTC(1909, 1, 1), 167],
+        [Date.UTC(1910, 1, 1), 19],
+        [Date.UTC(1911, 1, 1), 35],
+        [Date.UTC(1912, 1, 1), 10],
+        [Date.UTC(1913, 1, 1), 127],
+        [Date.UTC(1914, 1, 1), 307],
+        [Date.UTC(1915, 1, 1), 58],
+        [Date.UTC(1916, 1, 1), 19],
+        [Date.UTC(1917, 1, 1), 176],
+        [Date.UTC(1918, 1, 1), 60],
+        
+      ]
+    }, {
+      name: 'Kugelschreiber',
+      color:'black',
+      visible:false,
+      data: [
+        
 
-        ]
-      },
-      {
-        name: 'Pastel',
-        visible:true,
+      ]
+    },
+    {
+      name: 'Öl',
+      color:'black',
+      visible:false,
+      data: [
         
-        data: [
-          
-          [Date.UTC(1896, 1, 1), 1],
-          [Date.UTC(1899, 1, 1), 1],
-          [Date.UTC(1900, 1, 1), 2],
-          [Date.UTC(1902, 1, 1), 2],
-          [Date.UTC(1903, 1, 1), 1],
-          [Date.UTC(1905, 1, 1), 1],
-          [Date.UTC(1907, 1, 1), 1],
-          [Date.UTC(1909, 1, 1), 4],
-          [Date.UTC(1910, 1, 1), 1],
-          [Date.UTC(1911, 1, 1), 1],
-          [Date.UTC(1912, 1, 1), 1],
-          [Date.UTC(1913, 1, 1), 2],
-          [Date.UTC(1914, 1, 1), 7],
-          
+        [Date.UTC(1909, 1, 1), 36],
+        [Date.UTC(1910, 1, 1), 7],
+        [Date.UTC(1911, 1, 1), 43],
+        [Date.UTC(1912, 1, 1), 5],
+        [Date.UTC(1913, 1, 1), 13],
+        [Date.UTC(1914, 1, 1), 14],
+        [Date.UTC(1915, 1, 1), 15],
+        [Date.UTC(1916, 1, 1), 16],
+        [Date.UTC(1917, 1, 1), 25],
+        [Date.UTC(1918, 1, 1), 19],
+        
+      ]
+    },
+    {
+      name: 'Papier',
+      color:'purple',
+      data: [
+        
+        [Date.UTC(1909, 1, 1), 102],
+        [Date.UTC(1910, 1, 1), 23],
+        [Date.UTC(1911, 1, 1), 125],
+        [Date.UTC(1912, 1, 1), 45],
+        [Date.UTC(1913, 1, 1), 512],
+        [Date.UTC(1914, 1, 1), 82],
+        [Date.UTC(1915, 1, 1), 32],
+        [Date.UTC(1916, 1, 1), 725],
+        [Date.UTC(1917, 1, 1), 62],
+        [Date.UTC(1918, 1, 1), 47],
+        
 
-        ]
-      },
-      {
-        name: 'Stahl',
+      ]
+    },
+    {
+      name: 'Pastel',
+      visible:false,
+      color:'black',
+      data: [
         
-        visible:true,
-        data: [
-          
-          [Date.UTC(1899, 1, 1), 1],
-          [Date.UTC(1900, 1, 1), 2],
-          [Date.UTC(1909, 1, 1), 1],
-          [Date.UTC(1913, 1, 1), 4],
-          [Date.UTC(1914, 1, 1), 1],
-          
+        [Date.UTC(1909, 1, 1), 4],
+        [Date.UTC(1910, 1, 1), 1],
+        [Date.UTC(1911, 1, 1), 1],
+        [Date.UTC(1912, 1, 1), 1],
+        [Date.UTC(1913, 1, 1), 2],
+        [Date.UTC(1914, 1, 1), 7],
+        [Date.UTC(1918, 1, 1), 1],
+        
 
-        ]
-      },
-      {
-        name: 'Stift',
-        color:'violet',
+      ]
+    },
+    {
+      name: 'Stahl',
+      color:'black',
+      visible:false,
+      data: [
+        
+        [Date.UTC(1909, 1, 1), 1],
+        [Date.UTC(1913, 1, 1), 4],
+        [Date.UTC(1914, 1, 1), 1],
+        [Date.UTC(1917, 1, 1), 1],
+        
 
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 3],
-          [Date.UTC(1896, 1, 1), 1],
-          [Date.UTC(1898, 1, 1), 4],
-          [Date.UTC(1899, 1, 1), 9],
-          [Date.UTC(1900, 1, 1), 6],
-          [Date.UTC(1901, 1, 1), 9],
-          [Date.UTC(1902, 1, 1), 52],
-          [Date.UTC(1903, 1, 1), 2],
-          [Date.UTC(1904, 1, 1), 21],
-          [Date.UTC(1905, 1, 1), 14],
-          [Date.UTC(1906, 1, 1), 14],
-          [Date.UTC(1907, 1, 1), 202],
-          [Date.UTC(1908, 1, 1), 12],
-          [Date.UTC(1909, 1, 1), 39],
-          [Date.UTC(1910, 1, 1), 6],
-          [Date.UTC(1911, 1, 1), 23],
-          [Date.UTC(1912, 1, 1), 6],
-          [Date.UTC(1913, 1, 1), 455],
-          [Date.UTC(1914, 1, 1), 26],
-          [Date.UTC(1915, 1, 1), 35],
-          
+      ]
+    },
+    {
+      name: 'Stift',
+      color:'violet',
 
-        ]
-      },
-      {
-        name: 'Tinte',
+      data: [
         
-        visible:true,
-        data: [
-         
-          [Date.UTC(1895, 1, 1), 2],
-          [Date.UTC(1899, 1, 1), 9],
-          [Date.UTC(1900, 1, 1), 17],
-          [Date.UTC(1901, 1, 1), 2],
-          [Date.UTC(1902, 1, 1), 4],
-          [Date.UTC(1903, 1, 1), 31],
-          [Date.UTC(1904, 1, 1), 5],
-          [Date.UTC(1905, 1, 1), 17],
-          [Date.UTC(1906, 1, 1), 9],
-          [Date.UTC(1907, 1, 1), 104],
-          [Date.UTC(1908, 1, 1), 10],
-          [Date.UTC(1909, 1, 1), 67],
-          [Date.UTC(1910, 1, 1), 8],
-          [Date.UTC(1911, 1, 1), 25],
-          [Date.UTC(1912, 1, 1), 19],
-          [Date.UTC(1913, 1, 1), 277],
-          [Date.UTC(1914, 1, 1), 69],
-          [Date.UTC(1915, 1, 1), 26],
-          
-        ]
-      },
-      {
-        name: 'Visitenkarte',
-        visible:false,
+        [Date.UTC(1909, 1, 1), 39],
+        [Date.UTC(1910, 1, 1), 6],
+        [Date.UTC(1911, 1, 1), 23],
+        [Date.UTC(1912, 1, 1), 6],
+        [Date.UTC(1913, 1, 1), 455],
+        [Date.UTC(1914, 1, 1), 26],
+        [Date.UTC(1915, 1, 1), 35],
+        [Date.UTC(1916, 1, 1), 746],
+        [Date.UTC(1917, 1, 1), 21],
+        [Date.UTC(1918, 1, 1), 18],
         
-        data: [
-          
 
-        ]
-      },
-      {
-        name: 'Wasserfarben',
-        visible:true,
+      ]
+    },
+    {
+      name: 'Tinte',
+      color:'black',
+      visible:false,
+      data: [
         
-        data: [
-         
-          [Date.UTC(1895, 1, 1), 4],
-          [Date.UTC(1897, 1, 1), 2],
-          [Date.UTC(1898, 1, 1), 5],
-          [Date.UTC(1899, 1, 1), 8],
-          [Date.UTC(1900, 1, 1), 21],
-          [Date.UTC(1901, 1, 1), 12],
-          [Date.UTC(1902, 1, 1), 11],
-          [Date.UTC(1903, 1, 1), 20],
-          [Date.UTC(1904, 1, 1), 28],
-          [Date.UTC(1905, 1, 1), 14],
-          [Date.UTC(1906, 1, 1), 15],
-          [Date.UTC(1907, 1, 1), 99],
-          [Date.UTC(1908, 1, 1), 5],
-          [Date.UTC(1909, 1, 1), 49],
-          [Date.UTC(1910, 1, 1), 8],
-          [Date.UTC(1911, 1, 1), 34],
-          [Date.UTC(1912, 1, 1), 10],
-          [Date.UTC(1913, 1, 1), 56],
-          [Date.UTC(1914, 1, 1), 61],
-          [Date.UTC(1915, 1, 1), 44],
-          
-        ]
-      },
-      {
-        name: 'Abs',
+        [Date.UTC(1909, 1, 1), 67],
+        [Date.UTC(1910, 1, 1), 8],
+        [Date.UTC(1911, 1, 1), 25],
+        [Date.UTC(1912, 1, 1), 19],
+        [Date.UTC(1913, 1, 1), 277],
+        [Date.UTC(1914, 1, 1), 69],
+        [Date.UTC(1915, 1, 1), 26],
+        [Date.UTC(1916, 1, 1), 56],
+        [Date.UTC(1917, 1, 1), 18],
+        [Date.UTC(1918, 1, 1), 53],
         
-        visible:false,
-        data: [
-          
+      ]
+    },
+    {
+      name: 'Visitenkarte',
+      visible:false,
+      color:'black',
+      data: [
+        
 
-        ]
-      },
-      {
-        name: 'Acryl',
+      ]
+    },
+    {
+      name: 'Wasserfarben',
+      visible:false,
+      color:'black',
+      data: [
         
-        visible:true,
-        data: [
-         
-          [Date.UTC(1898, 1, 1), 1],
-          [Date.UTC(1913, 1, 1), 3],
-          
-        ]
-      },
-      {
-        name: 'Airbush',
+        [Date.UTC(1909, 1, 1), 49],
+        [Date.UTC(1910, 1, 1), 8],
+        [Date.UTC(1911, 1, 1), 34],
+        [Date.UTC(1912, 1, 1), 10],
+        [Date.UTC(1913, 1, 1), 56],
+        [Date.UTC(1914, 1, 1), 61],
+        [Date.UTC(1915, 1, 1), 44],
+        [Date.UTC(1916, 1, 1), 16],
+        [Date.UTC(1917, 1, 1), 19],
+        [Date.UTC(1918, 1, 1), 37],
         
-        visible:false,
-        data: [
-         
-        ]
-      },
-      {
-        name: 'Aquatint',
-        color:'orange',
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 30],
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1898, 1, 1), 5],
-          [Date.UTC(1899, 1, 1), 2],
-          [Date.UTC(1900, 1, 1), 31],
-          [Date.UTC(1901, 1, 1), 6],
-          [Date.UTC(1902, 1, 1), 61],
-          [Date.UTC(1903, 1, 1), 40],
-          [Date.UTC(1904, 1, 1), 68],
-          [Date.UTC(1905, 1, 1), 77],
-          [Date.UTC(1906, 1, 1), 16],
-          [Date.UTC(1907, 1, 1), 295],
-          [Date.UTC(1908, 1, 1), 11],
-          [Date.UTC(1909, 1, 1), 102],
-          [Date.UTC(1910, 1, 1), 7],
-          [Date.UTC(1911, 1, 1), 60],
-          [Date.UTC(1912, 1, 1), 13],
-          [Date.UTC(1913, 1, 1), 16],
-          [Date.UTC(1914, 1, 1), 271],
-          [Date.UTC(1915, 1, 1), 38],
-         
-        ]
-      },
-      {
-        name: 'Bronze',
+      ]
+    },
+    {
+      name: 'Abs',
+      color:'black',
+      visible:false,
+      data: [
         
-        visible:true,
-        data: [
-          
-          [Date.UTC(1895, 1, 1), 2],
-          [Date.UTC(1897, 1, 1), 2],
-          [Date.UTC(1899, 1, 1), 2],
-          [Date.UTC(1900, 1, 1), 2],
-          [Date.UTC(1902, 1, 1), 4],
-          [Date.UTC(1904, 1, 1), 12],
-          [Date.UTC(1907, 1, 1), 1],
-          [Date.UTC(1908, 1, 1), 13],
-          [Date.UTC(1909, 1, 1), 1],
-          [Date.UTC(1910, 1, 1), 4],
-          [Date.UTC(1911, 1, 1), 17],
-          [Date.UTC(1912, 1, 1), 2],
-          [Date.UTC(1914, 1, 1), 3],
-          [Date.UTC(1915, 1, 1), 1],
-          
-        ]
-      },
-      {
-        name: 'Carbon',
-        
-        visible:true,
-        data: [
-          
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1902, 1, 1), 1],
-          [Date.UTC(1903, 1, 1), 1],
-          [Date.UTC(1905, 1, 1), 2],
-          [Date.UTC(1907, 1, 1), 3],
-          [Date.UTC(1910, 1, 1), 1],
-          
 
-        ]
-      },
-      {
-        name: 'Glas',
+      ]
+    },
+    {
+      name: 'Acryl',
+      color:'black',
+      visible:false,
+      data: [
         
-        visible:true,
-        data: [
-         
-          [Date.UTC(1895, 1, 1), 1],
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1900, 1, 1), 18],
-          [Date.UTC(1901, 1, 1), 5],
-          [Date.UTC(1904, 1, 1), 4],
-          [Date.UTC(1907, 1, 1), 2],
-          [Date.UTC(1910, 1, 1), 17],
-          [Date.UTC(1911, 1, 1), 1],
-          [Date.UTC(1912, 1, 1), 6],
-          [Date.UTC(1913, 1, 1), 23],
-          [Date.UTC(1914, 1, 1), 5],
-         
-
-        ]
-      },
-      {
-        name: 'Mylar',
+        [Date.UTC(1913, 1, 1), 3],
         
-        visible:false,
-        data: [
-          
-
-        ]
-      },
-      {
-        name: 'Photomontage',
-        color:'lightblue',
-        data: [
-          
-          [Date.UTC(1915, 1, 1), 2],
-          
-
-        ]
-      },
-      {
-        name: 'Polyster',
+      ]
+    },
+    {
+      name: 'Airbush',
+      color:'black',
+      visible:false,
+      data: [
         
-        visible:false,
-        data: [
-         
-        ]
-      },
-      {
-        name: 'Video',
-        color: 'darkgreen',
-        data: [
-          
-          [Date.UTC(1897, 1, 1), 1],
-          [Date.UTC(1899, 1, 1), 2],
-          [Date.UTC(1901, 1, 1), 1],
-          [Date.UTC(1903, 1, 1), 2],
-          [Date.UTC(1904, 1, 1), 2],
-          [Date.UTC(1905, 1, 1), 9],
-          [Date.UTC(1906, 1, 1), 1],
-          [Date.UTC(1907, 1, 1), 1],
-          [Date.UTC(1908, 1, 1), 3],
-          [Date.UTC(1910, 1, 1), 1],
-          [Date.UTC(1911, 1, 1), 24],
-          [Date.UTC(1913, 1, 1), 5],
-          [Date.UTC(1914, 1, 1), 5],
-          [Date.UTC(1915, 1, 1), 4],
-          
-        ]
-      },
-    ],
+      ]
+    },
+    {
+      name: 'Aquatint',
+      color:'orange',
+      data: [
+        
+        [Date.UTC(1909, 1, 1), 102],
+        [Date.UTC(1910, 1, 1), 7],
+        [Date.UTC(1911, 1, 1), 60],
+        [Date.UTC(1912, 1, 1), 13],
+        [Date.UTC(1913, 1, 1), 16],
+        [Date.UTC(1914, 1, 1), 271],
+        [Date.UTC(1915, 1, 1), 38],
+        [Date.UTC(1916, 1, 1), 25],
+        [Date.UTC(1917, 1, 1), 148],
+        [Date.UTC(1918, 1, 1), 79],
+        
+      ]
+    },
+    {
+      name: 'Bronze',
+      color: 'black',
+      visible:false,
+      data: [
+        
+        [Date.UTC(1909, 1, 1), 1],
+        [Date.UTC(1910, 1, 1), 4],
+        [Date.UTC(1911, 1, 1), 17],
+        [Date.UTC(1912, 1, 1), 2],
+        [Date.UTC(1914, 1, 1), 3],
+        [Date.UTC(1915, 1, 1), 1],
+        [Date.UTC(1916, 1, 1), 6],
+        [Date.UTC(1917, 1, 1), 1],
+        
+      ]
+    },
+    {
+      name: 'Carbon',
+      color:'black',
+      visible:false,
+      data: [
+        
+        [Date.UTC(1910, 1, 1), 1],
+        [Date.UTC(1918, 1, 1), 1],
+        
+
+      ]
+    },
+    {
+      name: 'Glas',
+      color:'black',
+      visible:false,
+      data: [
+        
+        [Date.UTC(1910, 1, 1), 17],
+        [Date.UTC(1911, 1, 1), 1],
+        [Date.UTC(1912, 1, 1), 6],
+        [Date.UTC(1913, 1, 1), 23],
+        [Date.UTC(1914, 1, 1), 5],
+        [Date.UTC(1916, 1, 1), 1],
+        
+
+      ]
+    },
+    {
+      name: 'Mylar',
+      color:'black',
+      visible:false,
+      data: [
+        
+
+      ]
+    },
+    {
+      name: 'Photomontage',
+      color:'lightblue',
+      data: [
+        
+        [Date.UTC(1915, 1, 1), 2],
+        [Date.UTC(1916, 1, 1), 1],
+
+      ]
+    },
+    {
+      name: 'Polyster',
+      color:'black',
+      visible:false,
+      data: [
+        
+      ]
+    },
+    {
+      name: 'Video',
+      color: 'darkgreen',
+      data: [
+        
+        [Date.UTC(1910, 1, 1), 1],
+        [Date.UTC(1911, 1, 1), 24],
+        [Date.UTC(1913, 1, 1), 5],
+        [Date.UTC(1914, 1, 1), 5],
+        [Date.UTC(1915, 1, 1), 4],
+        [Date.UTC(1916, 1, 1), 2],
+        [Date.UTC(1917, 1, 1), 4],
+        [Date.UTC(1918, 1, 1), 1],
+        
+      ]
+    },
+  ],
 
    exporting: {
      buttons: {
@@ -9994,11 +9868,7 @@ PostModerne () {
        year: '%Y'
      },
      labels: {
-       formatter: function () {
-         const date = Highcharts.dateFormat('%Y', this.value);
-         // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-         return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-       },
+ 
        useHTML: true
      }
    },
@@ -10236,7 +10106,7 @@ PostModerne () {
     },
     {
       name: 'Papier',
-      color:'yellow',
+      color:'purple',
       data: [
         
         [Date.UTC(1957, 1, 1), 74],
@@ -10797,7 +10667,7 @@ PostModerne () {
  
  Bougleois (){
   document.getElementById("text").innerHTML = "";
-  Highcharts.chart('secondChart', {
+  Highcharts.chart('piechart2', {
     chart: {
         type: 'pie',
         height:'600px'
@@ -10806,23 +10676,29 @@ PostModerne () {
         text: 'Materialien Nutzung des Künstlers Bougleois (1911 - 2010)'
     },
     subtitle: {
-        text:'Source: <a href="dashboard">Click me for Biography of Artist</a>'
-    },
+      text: 'Platz 1'
+  },
+   
     credits:{
       enabled:false
     },
     plotOptions: {
+      pie: {
+        size:250
+      },
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}'
+                format: '{point.name}: {point.y:.0f}' 
             }
         }
     },
-
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      style: {
+        fontSize: '25px'
+    },
+        pointFormat: '<span style="font-size:18px;" >{point.name}</span>: <b>{point.percentage:.0f}% </b> of 100%<br/>',
+      
     },
     series: [{
       name: 'Brands',
@@ -10928,7 +10804,7 @@ y: 0
 
 Eugene (){
   document.getElementById("text").innerHTML = "";
-  Highcharts.chart('secondChart', {
+  Highcharts.chart('piechart1', {
     chart: {
         type: 'pie',
         height:'600px'
@@ -10937,23 +10813,25 @@ Eugene (){
         text: 'Materialien Nutzung des Künstlers Eugene Atget (1857 - 1927)'
     },
     subtitle: {
-        text:'Source: <a href="dashboard">Click me for Biography of Artist</a>'
-    },
+      text: 'Platz 1'
+  },
     credits:{
       enabled:false
     },
     plotOptions: {
+      pie: {
+        size:250
+      },
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}'
+                format: '{point.name}: {point.y:.0f}'
             }
         }
     },
 
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      pointFormat: '<span style="font-size:18px;" >{point.name}</span>: <b>{point.percentage:.0f}% </b> of 100%<br/>',
     },
     series: [{
       name: 'Brands',
@@ -11059,7 +10937,7 @@ y: 0
 
 Ludwig (){
   document.getElementById("text").innerHTML = "";
-  Highcharts.chart('secondChart', {
+  Highcharts.chart('piechart3', {
     chart: {
         type: 'pie',
         height:'600px'
@@ -11068,23 +10946,25 @@ Ludwig (){
         text: 'Materialien Nutzung des Künstlers Ludwig Mies van der Rohe (1886 - 1996)'
     },
     subtitle: {
-        text:'Source: <a href="dashboard">Click me for Biography of Artist</a>'
-    },
+      text: 'Platz 3'
+  },
     credits:{
       enabled:false
     },
     plotOptions: {
+      pie: {
+        size:250
+      },
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}'
+                format: '{point.name}: {point.y:.0f}'
             }
         }
     },
 
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      pointFormat: '<span style="font-size:18px;" >{point.name}</span>: <b>{point.percentage:.0f}% </b> of 100%<br/>',
     },
     series: [{
       name: 'Brands',
@@ -11190,7 +11070,7 @@ y: 3
 
 JeanDubuffet (){
   document.getElementById("text").innerHTML = "";
-  Highcharts.chart('secondChart', {
+  Highcharts.chart('piechart4', {
     chart: {
         type: 'pie',
         height:'600px'
@@ -11199,23 +11079,26 @@ JeanDubuffet (){
         text: 'Materialien Nutzung des Künstlers Jean Dubuffet (1901 - 1985)'
     },
     subtitle: {
-        text:'Source: <a href="dashboard">Click me for Biography of Artist</a>'
-    },
+      text: 'Platz 4'
+  },
+
     credits:{
       enabled:false
     },
     plotOptions: {
+      pie: {
+        size:250
+      },
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}'
+                format: '{point.name}: {point.y:.0f}'
             }
         }
     },
 
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      pointFormat: '<span style="font-size:18px;" >{point.name}</span>: <b>{point.percentage:.0f}% </b> of 100%<br/>',
     },
     series: [{
       name: 'Brands',
@@ -11321,7 +11204,7 @@ y: 0
 
 PabloPicasso (){
   document.getElementById("text").innerHTML = "";
-  Highcharts.chart('secondChart', {
+  Highcharts.chart('piechart5', {
     chart: {
         type: 'pie',
         height:'600px'
@@ -11330,23 +11213,26 @@ PabloPicasso (){
         text: 'Materialien Nutzung des Künstlers Pablo Picasso (1881 - 1973 )'
     },
     subtitle: {
-        text:'Source: <a href="dashboard">Click me for Biography of Artist</a>'
-    },
+      text: 'Platz 5'
+  },
+
     credits:{
       enabled:false
     },
     plotOptions: {
+       pie: {
+          size:250
+        },
         series: {
             dataLabels: {
                 enabled: true,
-                format: '{point.name}: {point.y:.1f}'
+                format: '{point.name}: {point.y:.0f}'
             }
         }
     },
 
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+      pointFormat: '<span style="font-size:18px;" >{point.name}</span>: <b>{point.percentage:.0f}% </b> of 100%<br/>',
     },
     series: [{
       name: 'Brands',
@@ -11493,11 +11379,7 @@ y: 0
         year: '%Y'
       },
       labels: {
-        formatter: function () {
-          const date = Highcharts.dateFormat('%Y', this.value);
-          // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-          return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-        },
+     
         useHTML: true
       }
     },
@@ -11681,7 +11563,7 @@ y: 0
       },
       {
         name: 'Papier',
-        color:'yellow',
+        color:'purple',
         data: [
    
           [Date.UTC(1924, 1, 1), 19],
@@ -12124,11 +12006,7 @@ y: 0
         year: '%Y'
       },
       labels: {
-        formatter: function () {
-          const date = Highcharts.dateFormat('%Y', this.value);
-          // return '<a href=" http://www.google.com?q=' + date + '" target="_blank">' + date + '</a>';
-          return '<a href="' + categoryLinks[date] + '" target="_blank" style="text-decoration: none";>' + date + '</a>';
-        },
+    
         useHTML: true
       }
     },
@@ -12307,7 +12185,7 @@ y: 0
       },
       {
         name: 'Papier',
-        color:'yellow',
+        color:'purple',
         data: [
        
           [Date.UTC(1950, 1, 1), 71],
@@ -12705,6 +12583,10 @@ y: 0
   ngOnInit() {
     this.Materialienn();
     this.Bougleois();
+    this.Eugene();
+    this.Ludwig();
+    this.JeanDubuffet();
+    this.PabloPicasso();
     
   
  

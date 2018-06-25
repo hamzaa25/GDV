@@ -4,7 +4,7 @@
 
 .highcharts-title {
     font-weight: bold;
-    font-size: 30px !important;
+    font-size: 20px !important;
 }
 .highcharts-subtitle {
     font-size: 20px;
@@ -13,10 +13,22 @@
 .highcharts-legend-item text
 {
 
-    font-size: 17px !important;
+    font-size: 19px !important;
 }
 
 .highcharts-label text {
     
     font-size: 17px !important;
+}
+
+ .highcharts-xaxis-labels span {
+     font-size: 18px !important;
+ }
+
+ .highcharts-yaxis-labels text {
+    font-size: 18px !important;
+}
+
+.highcharts-axis-title tspan {
+    font-size: 18px !important;   
 }
