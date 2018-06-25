@@ -4,109 +4,103 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <style>
-    .button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
+#wrapper {
+  display: flex;
+}
+#secondChart {
+  flex: 0 0 65%;
+}
+#text {
+  flex: 1;
+}
+.mycss
+{
+font-style:italic;color:#000000;letter-spacing:0pt;word-spacing:-1pt;font-size:20px;text-align:center;font-family:arial, helvetica, sans-serif;line-height:1;
+}
+.myButton {
+        margin-right: 5px;
+        margin-bottom: 10px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+	background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+	background-color:#ffffff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+	background:-moz-linear-gradient(top, #c0a760 100%, #ffffff 100%);
+	background:-webkit-linear-gradient(top, #888375 100%, #ffffff 100%);
+	background:-o-linear-gradient(top, #888375 100%, #ffffff 100%);
+	background:-ms-linear-gradient(top, #888375 100%, #ffffff 100%);
+	background:linear-gradient(to bottom, #888375 100%, #ffffff 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#888375', endColorstr='#ffffff',GradientType=0);
+	background-color:#888375;
+        color:white;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
     
-    .button1 {
-        background-color: white; 
-        color: black; 
-        border: 2px solid #4CAF50;
-    }
-    
-    .button1:hover {
-        background-color: #4CAF50;
-        color: white;
-    }
-    
-    .button2 {
-        background-color: white; 
-        color: black; 
-        border: 2px solid #008CBA;
-    }
-    
-    .button2:hover {
-        background-color: #008CBA;
-        color: white;
-    }
-    
-    .button3 {
-        background-color: white; 
-        color: black; 
-        border: 2px solid #f44336;
-    }
-    
-    .button3:hover {
-        background-color: #f44336;
-        color: white;
-    }
-    
-    .button4 {
-        background-color: white;
-        color: black;
-        border: 2px solid #e7e7e7;
-    }
-    
-    .button4:hover {background-color: #e7e7e7;}
-    
-    .button5 {
-        background-color: white;
-        color: black;
-        border: 2px solid #555555;
-    }
-    
-    .button5:hover {
-        background-color: #555555;
-        color: white;
-    }
     </style>
 
 
-<div><button class="button button1" (click)="Bougleois()" type="button" >
+<div><button class="myButton" (click)="Bougleois()" type="button" style="text-align: center;margin-bottom: 5px" >
     Künstler Ansicht</button></div>
-   <div><p></p></div> 
-<div> <button class="button button1" (click)="Realismus()" type="button">
+   
+<div style="text-align: center"> 
+<button class="myButton" (click)="Realismus();RealismusHover()" (mouseover)="RealismusHover()" (mouseout)="Materialienn()"   type="button">
     Realismus</button>
-<button class="button button1" (click)="Impressionismuss()" type="button">
+<button class="myButton" (click)="Impressionismuss()"(mouseover)="ImpressionismusHover()" (mouseout)="Materialienn()" type="button">
     Impresionismuss</button>
- <button class="button button1" (click)="Jugendstill()" type="button">
+ <button class="myButton" (click)="Jugendstill()"  (mouseover)="JugendstilHover()" (mouseout)="Materialienn()" type="button">
         Jugendstil</button>
-<button class="button button1" (click)="Expresionismus()" type="button">
+<button class="myButton" (click)="Expresionismus()"  (mouseover)="ExpressionismusHover()" (mouseout)="Materialienn()" type="button">
         Expresionismus</button>
-<button class="button button1" (click)="Kubismus()" type="button">
+<button class="myButton" (click)="Kubismus()" (mouseover)="KubismusHover()" (mouseout)="Materialienn()" type="button">
         Kubismus</button>
-<button class="button button1" (click)="Futurismus()" type="button">
+<button class="myButton" (click)="Futurismus()"  (mouseover)="FuturismusHover()" (mouseout)="Materialienn()" type="button">
         Futurismus</button>
-<button class="button button1" (click)="Dadaismuss()" type="button">
+<button class="myButton" (click)="Dadaismuss()" (mouseover)="DadaismusHover()" (mouseout)="Materialienn()"  type="button">
          Dadaismuss</button>
-<button class="button button1" (click)="magischerRealismuss()" type="button">
-        Magischer Realismus</button>
-<button class="button button1" (click)="Bauhaus()" type="button">
+<button class="myButton" (click)="magischerRealismuss()"  (mouseover)="MagischerRealismusHover()" (mouseout)="Materialienn()" type="button">
+        Neue Sachlichkeit</button>
+<button class="myButton" (click)="Bauhaus()"  (mouseover)="BauhausHover()" (mouseout)="Materialienn()" type="button">
          Bauhaus</button>
-<button class="button button1" (click)="Surrealismuss()" type="button">
+<button class="myButton" (click)="Surrealismuss()"  (mouseover)="SurrealismusHover()" (mouseout)="Materialienn()" type="button">
          Surrealismus</button>
-<button class="button button1" (click)="AbstrakterExpressionismus()" type="button">
-        Abstrakter Expressionismus</button>
-<button class="button button1" (click)="Informell()" type="button">
+<button class="myButton" (click)="AbstrakterExpressionismus()"  (mouseover)="AbstrakterExpressionismusHover()" (mouseout)="Materialienn()" type="button">
+        Abstrakter-Expressionismus</button>
+<button class="myButton" (click)="Informell()"  (mouseover)="InformelHover()" (mouseout)="Materialienn()" type="button">
         Informell</button>
-<button class="button button1" (click)="PostModerne()" type="button">
+<button class="myButton" (click)="PostModerne()"  (mouseover)="PostModerneHover()" (mouseout)="Materialienn()" type="button">
         Postmoderne</button>
-<button class="button button1" (click)="PopArt()" type="button">
+<button class="myButton" (click)="PopArt()" (mouseover)="PopLandArtHover()" (mouseout)="Materialienn()" type="button">
         Landart</button>
-<button class="button button1" (click)="PopArt()" type="button">
+<button class="myButton" (click)="PopArt()" (mouseover)="PopLandArtHover()" (mouseout)="Materialienn()" type="button">
         Popart</button>
-<button class="button button1" (click)="NeoExpressionismus()" type="button">
+<button class="myButton" (click)="NeoExpressionismus()"  (mouseover)="NeoExpressionismusHover()" (mouseout)="Materialienn()" type="button">
         Neo-Expressionismus</button>
     </div>
 
@@ -114,8 +108,11 @@
 
 
 <div id="Materialien"></div>
-<div id="secondChart"></div>
-<div id="text"></div>
+<div id="wrapper">"
+        <div id="secondChart"></div>
+        <div id="text" class="mycss" style="text-align: left; margin-left: 10px ;margin-right: 10px;border: black ;margin-top: 20px"></div>
+</div>
+
 
 
 
