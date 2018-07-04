@@ -67,51 +67,78 @@
 		color: white;
 	}
 
-	.myButton:active {
-		position: relative;
-		top: 1px;
-	
-	}
+.myButton:active .active:active{
+	margin-right: 5px;
+		margin-bottom: 10px;
+		-moz-box-shadow: inset 0px 1px 0px 0px black;
+		-webkit-box-shadow: inset 0px 1px 0px 0px black;
+		box-shadow: inset 0px 1px 0px 0px black;
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+		background: -moz-linear-gradient(top, black 5%, #f6f6f6 100%);
+		background: -webkit-linear-gradient(top, black 5%, #f6f6f6 100%);
+		background: -o-linear-gradient(top, black 5%, #f6f6f6 100%);
+		background: -ms-linear-gradient(top, black 5%, #f6f6f6 100%);
+		background: linear-gradient(to bottom, black 5%, #f6f6f6 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
+		background-color: black;
+		-moz-border-radius: 6px;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #dcdcdc;
+		display: inline-block;
+		cursor: pointer;
+		color: #666666;
+		font-family: Arial;
+		font-size: 19px;
+		padding: 6px 24px;
+		text-decoration: none;
+		text-shadow: 0px 1px 0px #ffffff;
+}
 
+.activate{
+        background:#666666;
+        color: white;
+}
 </style>
 
 
-<div style="text-align: center; margin-bottom: 5px"> <button class="myButton" (click)="closeWrapperDiv();Eugene();Bougleois();Ludwig();JeanDubuffet();PabloPicasso();" type="button"  >
+
+<div style="text-align: center; margin-bottom: 5px"> <button class="myButton" (click)="closeWrapperDiv();Eugene();Bougleois();Ludwig();JeanDubuffet();PabloPicasso();setButtonActive($event)" type="button"  >
         TOP 5 Künstler</button>
             </div>
            
-        <div style="text-align: center"> 
-        <button class="myButton" (click)="Realismus();closeDiv()" (mouseover)="RealismusHover()" (mouseout)="Materialienn()"   type="button">
+        <div id="buttons" style="text-align: center"> 
+        <button id='1' class="myButton activate" (click)="Realismus();closeDiv();RealismusHover();setButtonActive($event)" (mouseover)="Materialienn();RealismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche1()"   type="button">
             Realismus</button>
-        <button class="myButton" (click)="Impressionismuss();closeDiv()"(mouseover)="ImpressionismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Impressionismuss();closeDiv();ImpressionismusHover();setButtonActive($event);"(mouseover)="Materialienn();ImpressionismusHover();ifClickedEpoche1False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche2()" type="button">
             Impresionismuss</button>
-         <button class="myButton" (click)="Jugendstill();closeDiv()"  (mouseover)="JugendstilHover()" (mouseout)="Materialienn()" type="button">
+         <button class="myButton" (click)="Jugendstill();closeDiv();JugendstilHover();setButtonActive($event)"  (mouseover)="Materialienn();JugendstilHover();ifClickedEpoche2False();ifClickedEpoche1False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche3()"  type="button">
                 Jugendstil</button>
-        <button class="myButton" (click)="Expresionismus();closeDiv()"  (mouseover)="ExpressionismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Expresionismus();closeDiv();ExpressionismusHover();setButtonActive($event)"  (mouseover)="Materialienn();ExpressionismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche1False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche4()" type="button">
                 Expresionismus</button>
-        <button class="myButton" (click)="Kubismus();closeDiv()" (mouseover)="KubismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Kubismus();closeDiv();KubismusHover();setButtonActive($event)" (mouseover)="Materialienn();KubismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche1False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche5()"  type="button">
                 Kubismus</button>
-        <button class="myButton" (click)="Futurismus();closeDiv()"  (mouseover)="FuturismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Futurismus();closeDiv();FuturismusHover();setButtonActive($event)"  (mouseover)="Materialienn();FuturismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche1False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche6()"  type="button">
                 Futurismus</button>
-        <button class="myButton" (click)="Dadaismuss();closeDiv()" (mouseover)="DadaismusHover()" (mouseout)="Materialienn()"  type="button">
+        <button class="myButton" (click)="Dadaismuss();closeDiv();DadaismusHover();setButtonActive($event)" (mouseover)="Materialienn();DadaismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche1False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche7()"  type="button">
                  Dadaismuss</button>
-        <button class="myButton" (click)="magischerRealismuss();closeDiv()"  (mouseover)="MagischerRealismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="magischerRealismuss();closeDiv();MagischerRealismusHover();setButtonActive($event)"  (mouseover)="Materialienn();MagischerRealismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche1False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche8()"  type="button">
                 Neue Sachlichkeit</button>
-        <button class="myButton" (click)="Bauhaus();closeDiv()"  (mouseover)="BauhausHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Bauhaus();closeDiv();BauhausHover();setButtonActive($event)"  (mouseover)="Materialienn();BauhausHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche1False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche9()" type="button">
                  Bauhaus</button>
-        <button class="myButton" (click)="Surrealismuss();closeDiv()"  (mouseover)="SurrealismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Surrealismuss();closeDiv();SurrealismusHover();setButtonActive($event)"  (mouseover)="Materialienn();SurrealismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche1False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche10()" type="button">
                  Surrealismus</button>
-        <button class="myButton" (click)="AbstrakterExpressionismus();closeDiv()"  (mouseover)="AbstrakterExpressionismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="AbstrakterExpressionismus();closeDiv();AbstrakterExpressionismusHover();setButtonActive($event)"  (mouseover)="Materialienn();AbstrakterExpressionismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche1False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche11()" type="button">
                 Abstrakter-Expressionismus</button>
-        <button class="myButton" (click)="Informell();closeDiv()"  (mouseover)="InformelHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="Informell();closeDiv();InformelHover();setButtonActive($event)"  (mouseover)="Materialienn();InformelHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche1False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche12()" type="button">
                 Informell</button>
-        <button class="myButton" (click)="PostModerne();closeDiv()"  (mouseover)="PostModerneHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="PostModerne();closeDiv();PostModerneHover();setButtonActive($event)"  (mouseover)="Materialienn();PostModerneHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche1False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche13()"  type="button">
                 Postmoderne</button>
-        <button class="myButton" (click)="PopArt();closeDiv()" (mouseover)="PopLandArtHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="PopArt();closeDiv();PopLandArtHover();setButtonActive($event)" (mouseover)="Materialienn();PopLandArtHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche1False();ifClickedEpoche15False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche14()" type="button">
                 Landart</button>
-        <button class="myButton" (click)="PopArt();closeDiv()" (mouseover)="PopLandArtHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="PopArt();closeDiv();PopLandArtHover();setButtonActive($event)" (mouseover)="Materialienn();PopLandArtHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche1False();ifClickedEpoche16False()" (mouseout)="ifClickedEpoche15()" type="button">
                 Popart</button>
-        <button class="myButton" (click)="NeoExpressionismus();closeDiv()"  (mouseover)="NeoExpressionismusHover()" (mouseout)="Materialienn()" type="button">
+        <button class="myButton" (click)="NeoExpressionismus();closeDiv();NeoExpressionismusHover();setButtonActive($event)"  (mouseover)="Materialienn();NeoExpressionismusHover();ifClickedEpoche2False();ifClickedEpoche3False();ifClickedEpoche4False();;ifClickedEpoche5False();ifClickedEpoche6False();ifClickedEpoche7False();ifClickedEpoche8False();ifClickedEpoche9False();ifClickedEpoche10False();ifClickedEpoche11False();ifClickedEpoche12False();ifClickedEpoche13False();ifClickedEpoche14False();ifClickedEpoche15False();ifClickedEpoche1False()" (mouseout)="ifClickedEpoche16()"  type="button">
                 Neo-Expressionismus</button>
             </div>
 
@@ -129,5 +156,5 @@
 <div id="piechart5"style="display: inline-block;width: 18% margin-top: 20px;"></div>
 
 <div id="secondChart"  style="float: left;width: 70% ;margin-top:50px"></div>
-<div id="text" class="mycss" style="text-align: left;float: left;width: 25%; margin-left: 20px ;margin-right: 20px;border: black ;margin-top: 70px "></div>
+<div id="text" class="mycss" style="text-align: left;float: left;width: 25%; margin-left: 20px ;margin-right: 20px;border: black ;margin-top: 30px "></div>
 
